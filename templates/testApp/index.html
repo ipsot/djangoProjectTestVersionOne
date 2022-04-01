@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+    <h1>Hello world!!!</h1>
+    <h2>{{ name }}</h2>
+    <h2>{{ age }}</h2>
+
+    <ul>
+        {% for country in countries %}
+            <li>{{ country }}</li>
+        {% endfor %}
+
+    </ul>
+</body>
+</html>
