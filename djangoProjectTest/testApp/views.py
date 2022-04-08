@@ -2,6 +2,9 @@ from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render
 from django.template.response import TemplateResponse
 
+from djangoProjectTest.testApp.forms import UserForm
+from djangoProjectTest.testApp.models import Person
+
 
 def index(request, pname):
     output = "say hello to, {0}".format(pname)
@@ -25,3 +28,24 @@ def index_view(request):
         "countries": countries
     }
     return render(request, "testApp/index.html", context=data)
+
+
+def base_view(request):
+    return render(request, "testApp/page.html")
+
+
+def form_page(request):
+    userform = UserForm()
+    data = {"form": userform}
+    return render(request, "testApp/formpage.html", context=data)
+
+
+def check_form_page(request):
+    name = request.POST.get("name")
+    age = request.POST.get("age")
+    return HttpResponse(f"<h2>Hello, {name} you {age}</h2>")
+
+
+def persons(request):
+    people = Person.objects.all()
+    return render(request, "testApp/persons.html", {"people": people})
